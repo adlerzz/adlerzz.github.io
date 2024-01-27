@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>QuickCharge</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="root">
+    <span>с какого числа:</span>
+    <input id="fromInput" type="date">
+    <hr>
+    <span>по какое число:</span>
+    <input id="toInput" type="date">
+    <hr>
+    <button id="statBtn">Открыть статистику</button>
+  </div>
+  <script>
+    const btn = document.getElementById("statBtn");
+
+    btn.addEventListener("click", () => {
+    const fromDate = document.getElementById("fromInput").value;
+    const toDate = document.getElementById("toInput").value;
+    const idHash = `MzQx`;
+    location.assign(`https://eco.kociuk.pl/chart.php?id=${idHash}&datefrom=${fromDate}&dateto=${toDate}`);
+  });
+  </script>
+  <script src="./script.js"></script>
+
+</body>
+</html>
