@@ -52,8 +52,4 @@ commandEl.addEventListener("keyup", async (event) => {
         terminalEl.value = terminalEl.value + "\n" + `>> ${commandText}`; 
         await writer.write(encoder.encode(commandText));
     }
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 6a47d4ec0cb56f25543fafeac7214ff217f5728d
