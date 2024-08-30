@@ -1,31 +1,43 @@
-const port = await navigator.serial.requestPort();
-await port.open({baudRate: 9600});
-const [reader, writer, encoder, decoder] = [
-	port.readable.getReader(), 
-	port.writable.getWriter(), 
-	new TextEncoder(),
-	new TextDecoder(),
-];
-setTimeout( async () => {
-	do{ 
-		const {value, done } = await reader.read(); 
-		if(done) { 
-			reader.releaseLock(); 
-			break;
-		}
-		console.log(decoder.decode(value));
-	} while(true); 
-}, 0);
+let prm = false;
+let port = null;
 
-const inputElement = document.getElementById("command_input");
+let reader, writer;
 
-inputElement.addEventListener("input", async (event) => {
-  await writer.write(encoder.encode("inputElement.value")); 
+const [encoder, decoder] = [new TextEncoder(), new TextDecoder()];
+
+const connectEl = document.getElementById("connect");
+const commandEl = document.getElementById("command");
+const terminalEl = document.getElementById("terminal");
+
+
+connectEl.addEventListener("click", async () => {
+	port = await navigator.serial.requestPort();
+
+	await port.open({ baudRate: 9600 });
+	[reader, writer] = [
+		port.readable.getReader(),
+		port.writable.getWriter(),
+	];
+	setTimeout(async () => {
+		do {
+			const { value, done } = await reader.read();
+			if (done) {
+				reader.releaseLock();
+				break;
+			}
+			const response = decoder.decode(value)
+			console.log(response);
+			terminalEl.value = terminalEl.value + "\n" + `<< ${response}`;
+		} while (true);
+	}, 0);
+
 });
 
-inputElement.addEventListener("keyup", (event) => {
-  if(event.key === "Enter"){
-    inputElement.value = "";
-  }
+commandEl.addEventListener("keyup", async (event) => {
+	if (event.key === "Enter") {
+		const commandText = commandEl.value;
+		commandEl.value = "";
+		terminalEl.value = terminalEl.value + "\n" + `>> ${commandText}`; 
+		await writer.write(encoder.encode(commandText));
+	}
 });
-
