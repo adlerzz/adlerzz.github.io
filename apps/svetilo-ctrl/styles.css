@@ -1,10 +1,26 @@
 body {
   display: flex;
   justify-content: center;
+  background-color: #001010;
 }
 
 main {
   display: flex;
   flex-direction: column;
   width: 480px;
+}
+
+textarea#terminal{
+  height: 40vh;  
+}
+
+textarea#terminal, input#command {
+  background-color: black;
+  color: green;
+  font-family: monospace;
+}
+
+button#connect {
+  background-color: #011010;
+  color: #603030;
 }
