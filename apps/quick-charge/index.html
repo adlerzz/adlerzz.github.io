@@ -52,7 +52,8 @@
     btn.addEventListener("click", () => {
       const fromDate = document.getElementById("fromInput").value;
       const toDate = document.getElementById("toInput").value;
-      location.assign(`https://eco.kociuk.pl/chart.php?id=MzQx&datefrom=${fromDate}&dateto=${toDate}`);
+      const code = btoa(`MzQx#${fromDate}#${toDate}`);
+      location.assign(`https://eco.kociuk.pl/chart.php?code=${code}`);
     });
   </script>
   <script src="./script.js"></script>
