@@ -1,3 +1,7 @@
+function isEmpty(s){
+    return !s || s.length === 0
+}
+
 const request = Object.fromEntries(
     location.search
         .slice(1)
@@ -25,7 +29,7 @@ actionButton.addEventListener("click", () => {
     }
     const dates = elIds
         .map(id => document.getElementById(id).value);
-    if (dates.some(date => !date || date.length === 0)) {
+    if (dates.some(isEmpty)) {
         alert("Проверьте даты");
         return;
     }
