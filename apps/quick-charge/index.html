@@ -1,63 +1,23 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuickCharge</title>
   <link rel="stylesheet" href="./styles.css">
-  <style>
-    .root {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .formGrid {
-      display: inline-grid;
-      grid-template-columns: auto min-content;
-      gap: 8px;
-      margin: 20px 0;
-    }
-
-    #statBtn {
-      width: 100%;
-      height: 40px;
-    }
-  </style>
 </head>
-
 <body>
   <div class="root">
     <div class="container">
       <div class="formGrid">
         <label>с какого числа:</label>
-        <input id="fromInput" type="date">
+        <input id="fromDate" type="date">
         <label>по какое число:</label>
-        <input id="toInput" type="date">
+        <input id="toDate" type="date">
       </div>
-      <button id="statBtn">Открыть статистику</button>
+      <button id="action">Открыть статистику</button>
     </div>
   </div>
-  <script>
-    const btn = document.getElementById("statBtn");
-
-    btn.addEventListener("click", () => {
-      const fromDate = document.getElementById("fromInput").value;
-      const toDate = document.getElementById("toInput").value;
-      const code = btoa(`MzQx#${fromDate}#${toDate}`);
-      location.assign(`https://eco.kociuk.pl/chart.php?code=${code}`);
-    });
-  </script>
   <script src="./script.js"></script>
-
 </body>
-
 </html>
