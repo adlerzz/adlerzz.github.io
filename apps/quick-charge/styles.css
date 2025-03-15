@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: sans-serif;
 }
 
 .root {
@@ -7,6 +8,9 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+    transform: scale(1.4);
+    background-color: lightcyan;
 }
 
 .container {
@@ -16,12 +20,33 @@ body {
 
 .formGrid {
     display: inline-grid;
-    grid-template-columns: auto min-content;
     gap: 8px;
     margin: 20px 0;
+    justify-items: center;
 }
 
-#statBtn {
-    width: 100%;
-    height: 40px;
+
+@media screen and (orientation: portrait) {
+    .formGrid {
+        grid-template-columns: auto;
+        gap: 8px;
+        
+        & *:nth-child(2n){
+            margin-bottom: 30px;
+        }
+    }    
+}
+
+@media screen and (orientation: landscape) {
+    .formGrid {
+        grid-template-columns: auto min-content;
+    } 
+    #action {
+        grid-column: 1 / span 2;
+    }    
+}
+
+#action {
+    -width: 100%;
+    height: 54px;
 }
