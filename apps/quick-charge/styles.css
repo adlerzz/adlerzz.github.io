@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: sans-serif;
+    overflow: hidden;
 }
 
 .root {
@@ -10,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     transform: scale(1.4);
-    background-color: lightcyan;
+    background-color: snow;
 }
 
 .container {
@@ -20,8 +21,6 @@ body {
 
 .formGrid {
     display: inline-grid;
-    gap: 8px;
-    margin: 20px 0;
     justify-items: center;
 }
 
@@ -30,7 +29,6 @@ body {
     .formGrid {
         grid-template-columns: auto;
         gap: 8px;
-        
         & *:nth-child(2n){
             margin-bottom: 30px;
         }
@@ -40,6 +38,7 @@ body {
 @media screen and (orientation: landscape) {
     .formGrid {
         grid-template-columns: auto min-content;
+        gap: 16px;
     } 
     #action {
         grid-column: 1 / span 2;
@@ -47,6 +46,6 @@ body {
 }
 
 #action {
-    -width: 100%;
     height: 54px;
+    background-color: lightgray;
 }
